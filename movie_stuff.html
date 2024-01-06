@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome Movie Station</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="movie_stuff.css" rel="stylesheet">
+        <script src="movie_stuff.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <!--navbar-->
+      <header>
+        <nav class="navbar">
+          <div class="container">
+              <iframe src="https://giphy.com/embed/nn90FCY7OJsYM"width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/107gPMgIBBleA8" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/1ZjU4IvkINMO43bIGQ" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/yeabHeV9oPRh6" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/N1dXLHCuqwuM8" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/JDAVoX2QSjtWU" width="237" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <ul>
+              <li><a class="active" href="movie_stuff.html">영화 정보 정류장</a></li>
+              <li><a href="#service_section">렌덤 영화 추천</a></li>
+              <li><a href="search_table.html">영화 정보 찾기</a></li>
+              <li><a href="#platform">영화 플렛폼</a></li>
+            </ul>
+          </div>
+        </nav>
+        <br>
+      </header>
+      <!--intro section-->
+      <div class="intro">
+                <div>
+                  <h1>어서 오세요!<br>
+                    영화 정보 정류장입니다!<br></h1>
+                    <h3>여기서 영화 정보를 찾을 수 있고<br> 렌덤 영화 추천도
+                      받을 수 있습니다!</h3>
+                    <h3>영화의 여러가지?<br>
+                    영화 정보 정류장 도와 드릴게요!</h3>
+                </div>
+                <div class="gif">
+                  <img src="img/sayHi.gif" ></img>
+                </div>
+      </div>
+
+        <!--search section-->
+        <div class="service_section" id="service_section">
+          <!--random movie recommendation-->
+            <div class="card1">
+              <img src="img/movie.jpg" class="card-img-2" style='height:20rem;width:100%' alt="">
+              <div class="card-body">
+                <h5 class="card-title">렌덤 영화 추천</h5>
+                <p class="card-text">오랜만에 힐링 데이...<br>
+                  영화를 보고 싶은데 어떤 영화를 보는지 되게 고민...<br>
+                걱정마세요!이제 그만 고민하고 <br>랜덤 영화 추천 서비스에게 맏기세요!</p>
+                <button id="randomBtn1"onclick="randomMovieSearch()">영화 추천 받기</button>
+              </div>
+            </div>
+            <!--movie information table-->
+            <div class="card2">
+                <img src="img/movie.jpg" class="card-img-2" style='height:20rem;width:100%' alt="">
+                <div class="card-body">
+                  <h5 class="card-title">영화 정보 찾기</h5>
+                  <p class="card-text">영화 정보 정류장입니다!<br>
+                    국가와 장르를 기준으로 영화를 찾고 싶습니까?<br>
+                  컴색 테이블을 만들어 드리겠습니다!<br>
+                바로 빠른 컴색!</p>
+                <a href="search_table.html">
+                  <button>영화 정보<br> 찾으러 가기</button>
+                </a>
+                </div>
+            </div>
+            <!--movie food recommendation-->
+            <div class="card3">
+              <img src="img/movie.jpg" id="card-img-3" style='height:20rem;width:100%' alt="">
+              <div class="card-body">
+                <h5 class="card-title">렌덤 간식 추천</h5>
+                <p class="card-text">영화를 보면서 배고프시면 안 되죠?<br>
+                  근데 영화를 볼 때 뭘 먹어요? 고민중...<br>
+                이제 그만 고민! 렌덤 간식 추천 드릴게요!<br>
+              렌덤으로 간식 더 맛있는 것 같아요 버튼 눌러 보세요!</p>
+                <button onclick="randomFood()">렌덤 간식 추천</button>
+              </div>
+          </div>
+        </div>
+        <!--kinda footer-->
+        <div class="intro" style="background-color: #333;">
+          <div class="gif">
+            <img src="img/laugh_sheep.gif" ></img>
+          </div>
+          <div style="color: white; padding:30px;" id="platform">
+            <h1>지금 준비 되셨나요?<br>
+              영화를 보러 갑시다!<br></h1>
+              <h3>보고 싶은 영화를 찾으셨나요?</h3>
+              <h3>먹을 간식을 챙기셨나요?</h3>
+              <h3>찾으시면 바로 영화 플렛폼에 갑시다!<br>
+              영화를 잘 보고 행복하고 힐링하는 하루를 보내세요!</h3>
+              <ul>
+                <li><a href="https://www.netflix.com/kr-en/" target="blank">Netflix</a></li>
+                <li><a href="https://www.disneyplus.com/en-kr" target="blank">Disney+</a></li>
+                <li><a href="https://www.primevideo.com/" target="blank">Amazon Prime Video</a></li>
+                <li><a href="https://www.youtube.com/" target="blank">Youtube</a></li>
+              </ul>
+              <br><br>
+              <p>Made By:<br>
+              CSE 201824604 Choi Ji Gwang<br>
+            CSE 202300107 Chen Yi Rou</p>
+          </div>
+
+        </div>
+          <!--modal-->
+          <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="topArea">
+                    <h2 id="keywordInput">어떤 키워드나 문자를 입력하세요.</h2>
+                    <div id="trailer"></div>
+                    <p id="movieName" style="text-decoration: underline;"></p>
+                    <div id="movieDescription"></div>
+                    <h2 id="noInput">문자나 키워드를 입력하세요!</h2>
+                    <h2 id="cannotFind">관련된 영화가 없습니다!</h2>
+                    <h2 id="connectionFailure">연결이 안 됩니다.<br>
+                      다시 시도하세요!</h2>
+                    
+                </div>
+                <div class="modal-body" id="searchArea">
+                    <input id='searchBar' name="search" type="text" placeholder="Search.." style="border-radius: 10px; height: 25px"><br>
+                </div>
+                
+                <div class="modal-footer">
+                    <button id='randomBtn2' onclick="randomMovieSearch()">Search</button>
+                    <br>
+                    <!--close button-->
+                    <button id='closeBtn' onclick="closeModal()">Close</button>
+                </div>
+              </div>
+          </div>
+          <!--script for modal-->
+          <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+            // Get the button that opens the modal
+            var btn = document.getElementById("randomBtn1");
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+          </script>
+
+    </body>
+</html>

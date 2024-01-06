@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Movie!</title>
+    <script>
+        var curPage = 1;
+        var nation;
+        var genre;
+        function loadData() {
+            deleteTable();
+
+            var apiKey = '53b3ea38a2bbcb7da6316153feed3fa0&itemPerPage=100';
+            
+            if (nation == '한국')
+                apiKey += '&repNationCd=22041011'
+            else if (nation == '일본')
+                apiKey += '&repNationCd=22041008'
+            else if (nation == '미국')
+                apiKey += '&repNationCd=22042002'
+            else if (nation == '대만')
+                apiKey += '&repNationCd=22041001'
+
+            apiKey += '&curPage=' + curPage;
+            var apiUrl = 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=' + apiKey;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', apiUrl, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var xmlData = xhr.responseXML;
+                    createTableFromXML(xmlData); //create table
+                } else if (xhr.status !== 200) { //error
+                    console.error('API 요청에 실패했습니다.');
+                }
+            };
+            xhr.send();
+        }
+
+        function createTableFromXML(xmlData) {
+            var movies = xmlData.getElementsByTagName("movie");
+
+            var table = document.createElement("table");
+            var tableHead = document.createElement("thead");
+            var tableBody = document.createElement("tbody");
+
+            var headRow = document.createElement("tr");
+            var headers = ["영화 제목", "장르", "국가", "감독", "개봉일"];
+
+           
+
+            headers.forEach(function (headerText) {
+                var header = document.createElement("th");
+                var textNode = document.createTextNode(headerText);
+                header.appendChild(textNode);
+                headRow.appendChild(header);
+            });
+
+            tableHead.appendChild(headRow);
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+            
+            for (var i = 0; i < movies.length; i++) {
+                var movie = movies[i];
+                var title = movie.getElementsByTagName("movieNm")[0].textContent;
+                var director = movie.getElementsByTagName("directors")[0].textContent;
+                var releaseDate = movie.getElementsByTagName("openDt")[0].textContent;
+                var genre2 = movie.getElementsByTagName("genreAlt")[0].textContent;
+                var nation2 = movie.getElementsByTagName("nationAlt")[0].textContent;
+
+                var row = document.createElement("tr");
+                var titleCell = document.createElement("td");
+                var genreCell = document.createElement("td");
+                var nationCell = document.createElement("td");
+                var directorCell = document.createElement("td");
+                var releaseDateCell = document.createElement("td");
+
+                titleCell.textContent = title;
+                nationCell.textContent = nation2;
+                directorCell.textContent = director;
+                releaseDateCell.textContent = releaseDate;
+                genreCell.textContent = genre2;
+
+                row.appendChild(titleCell);
+                row.appendChild(genreCell);
+                row.appendChild(nationCell);
+                row.appendChild(directorCell);
+                row.appendChild(releaseDateCell);
+
+                if (genre == '액션' && genreCell.textContent.includes('액션'))
+                    tableBody.appendChild(row);
+                else if (genre == '판타지' && genreCell.textContent.includes('판타지'))
+                    tableBody.appendChild(row);
+                else if (genre == '로맨스' && genreCell.textContent.includes('로맨스'))
+                    tableBody.appendChild(row);
+                else if (genre == '범죄' && genreCell.textContent.includes('범죄'))
+                    tableBody.appendChild(row);
+                else if (genre == '드라마' && genreCell.textContent.includes('드라마'))
+                    tableBody.appendChild(row);
+            }
+            var mainDiv = document.getElementById("mainDiv");
+            mainDiv.appendChild(table);
+        }
+        function genrefuc(genreAlt) {
+            var text = document.getElementById("genreText");
+            curPage = 1;
+            if (genreAlt == '초기화') {
+                genre == null;
+                text.innerHTML = '장르 : ';
+            }
+            else {
+                genre = genreAlt;
+                text.innerHTML = '장르 : ' + genreAlt;
+            }
+        }
+        function nationfuc(nationAlt) {
+            var text = document.getElementById("nationText");
+            curPage = 1;
+            if (nationAlt == '초기화') {
+                nation = null;
+                text.innerHTML = '국가 : ';
+            }
+            else {
+                nation = nationAlt;
+                text.innerHTML = '국가 : ' + nationAlt;
+            }
+        }
+        function deleteTable() {
+            var mainDiv = document.getElementById('mainDiv');
+            mainDiv.innerHTML = '';
+        }
+        function prevPage() {
+            curPage--;
+            if (curPage <= 0)
+                curPage = 1;
+            loadData();
+        }
+        function nextPage() {
+            curPage++;
+            loadData();
+        }
+
+    </script>
+    <style>
+        * {
+            font-family: 'Poor Story', cursive;
+        }
+        table {
+            border: 1px solid;
+            width: 70%
+        }
+        th, td {
+            border: 1px solid;
+        }
+        div.mainDiv {
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+
+    </style>
+   <link href="movie_stuff.css" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+</head>
+
+<!--body-->
+    <!--header-->
+    <header>
+        <nav class="navbar">
+          <div class="container">
+              <iframe src="https://giphy.com/embed/nn90FCY7OJsYM"width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/107gPMgIBBleA8" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/1ZjU4IvkINMO43bIGQ" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/yeabHeV9oPRh6" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/N1dXLHCuqwuM8" width="230" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/JDAVoX2QSjtWU" width="237" height="135" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <ul>
+              <li><a class="active" href="movie_stuff.html">영화 정보 정류장</a></li>
+            </ul>
+          </div>
+        </nav>
+        <br>
+      </header>
+    <!--condition serach-->
+        <div class="condition-search">       
+                        <div class="card1">
+                            <div class="card-body">
+                              <h5 class="card-title">장르선택</h5>
+                              <p class="card-text">장르를 선택하세요.</p>
+                              <div id="genreDiv" class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button onclick="genrefuc('액션')" type="button" class="btn btn-outline-primary" >액션</button>
+                                <button onclick="genrefuc('판타지')" type="button" class="btn btn-outline-primary">판타지</button>
+                                <button onclick="genrefuc('로맨스')" type="button" class="btn btn-outline-primary">로맨스</button>
+                                <button onclick="genrefuc('범죄')" type="button" class="btn btn-outline-primary" >범죄</button>
+                                <button onclick="genrefuc('드라마')" type="button" class="btn btn-outline-primary">드라마</button>
+                                <button onclick="genrefuc('초기화')" type="button" class="btn btn-outline-primary">초기화</button>
+                            </div><br>
+                                <p class="card-text" id="genreText">장르 : </p>
+                            </div>
+                        </div>         
+                        <div class="card2">
+                            <div class="card-body">
+                              <h5 class="card-title">국가선택</h5>
+                              <p class="card-text">국가를 선택하세요.</p>
+                              <div id="genreDiv" class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button onclick="nationfuc('한국')" type="button" class="btn btn-outline-primary">한국</button>
+                            <button onclick="nationfuc('미국')" type="button" class="btn btn-outline-primary">미국</button>
+                            <button onclick="nationfuc('일본')" type="button" class="btn btn-outline-primary">일본</button>
+                            <button onclick="nationfuc('대만')" type="button" class="btn btn-outline-primary">대만</button>
+                            <button onclick="nationfuc('초기화')" type="button" class="btn btn-outline-primary">초기화</button>
+                            </div><br>
+                                <p class="card-text" id="nationText">국가 : </p>
+                            </div>
+                        </div>
+                        <div class="card3">
+                                <div class="card-body">
+                                    <h5 class="card-title">검색 결과</h5>
+                                    <p class="card-text">Load를 누르세요.</p>
+                                    <div id="genreDiv" class="btn-group" role="group" aria-label="Basic outlined example">
+                                        <button onclick="loadData()" type="button" class="btn btn-outline-primary">Load</button>
+                                        <button onclick="prevPage()" type="button" class="btn btn-outline-primary">이전페이지</button>
+                                        <button onclick="nextPage()" type="button" class="btn btn-outline-primary">다음페이지</button>
+                                    </div><br>
+                            <p class="card-text" id="nationText"><br></p>
+                                </div>
+                        </div>
+                     
+        </div>
+
+        <!--table-->
+        <div class="table-showup">
+                        <div class="card-body">
+                            <h5 class="card-title">영화 정보 테이블</h5>
+                            <p class="card-text">영화 정보는 아래와 같습니다.</p>
+                            <br>
+                            <div id="mainDiv" class="mainDiv"></div>
+                        </div>
+        </div>
+</body>
+</html>
+
